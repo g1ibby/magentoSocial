@@ -1,0 +1,22 @@
+{
+    "name": "oggetto/social",
+    "type": "magento-module",
+    "license": "MIT",
+    "homepage": "https://github.com/wss-world/magentoSocial",
+    "description": "Magento social login (vk, fb)",
+    "authors": [
+        {
+        	"name": "Sergei Waribrus",
+        	"email": "wss.world@gmail.com"
+        }
+    ],
+    "require": {
+        "magento-hackathon/magento-composer-installer": "*"
+    },
+    "extra": {
+        "map": [
+            ["app/etc/modules/Oggetto_Social.xml", "app/etc/modules/Oggetto_Social.xml"],
+            ["app/code/local/Oggetto/Social", "app/code/local/Oggetto/Social"]
+        ]
+    }
+}

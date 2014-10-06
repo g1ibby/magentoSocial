@@ -1,0 +1,38 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="<?php echo $this->getLang() ?>" lang="<?php echo $this->getLang() ?>">
+<head>
+    <?php echo $this->getChildHtml('head') ?>
+</head>
+<body>
+    <script>
+        var status = '<?php echo $this->getData('status'); ?>';
+        var provider = '<?php echo $this->getData('provider'); ?>'.toUpperCase();
+
+        var url = window.location.href;
+        if (window.opener == null) {
+            window.location = 'http://' + url.split(/\/+/g)[1];
+        }
+
+        var link = window.opener.location.href;
+        if (status == 'login social') {
+            if (typeof window._gaq !== 'undefined') {
+                _gaq.push(['_trackEvent', 'SocialLogin', 'LoginSuccess_' + provider, link, 1]);
+                _gaq.push(['additional._trackEvent', 'SocialLogin', 'LoginSuccess_' + provider, link, 1]);
+            }
+        }
+
+        if (status == 'registration social') {
+            if (typeof window._gaq !== 'undefined') {
+                _gaq.push(['_trackEvent', 'SocialLogin', 'RegisterSuccess_' + provider, link, 1]);
+                _gaq.push(['additional._trackEvent', 'SocialLogin', 'RegisterSuccess_' + provider, link, 1]);
+            }
+        }
+
+        window.opener.location.reload();
+        setTimeout(function() {
+            window.close();
+        }, 1000);
+
+    </script>
+</body>
+</html>
